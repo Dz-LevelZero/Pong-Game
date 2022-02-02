@@ -1,7 +1,7 @@
 // Canvas
 const { body } = document;
-
-
+const canvas = document.createElement('canvas');
+const context = canvas.getContext('2d');
 const width = 500;
 const height = 700;
 const screenWidth = window.screen.width;
@@ -48,42 +48,42 @@ const winningScore = 7;
 // let isNewGame = true;
 
 // Render Everything on Canvas
-function renderCanvas() {
+const renderCanvas = () => {
   // Canvas Background
-  // context.fillStyle = 'black';
-  // context.fillRect(0, 0, width, height);
+  context.fillStyle = 'black';
+  context.fillRect(0, 0, width, height);
 
   // Paddle Color
-  // context.fillStyle = 'white';
+  context.fillStyle = 'white';
 
   // Player Paddle (Bottom)
-  // context.fillRect(paddleBottomX, height - 20, paddleWidth, paddleHeight);
+  context.fillRect(paddleBottomX, height - 20, paddleWidth, paddleHeight);
 
   // Computer Paddle (Top)
-  // context.fillRect(paddleTopX, 10, paddleWidth, paddleHeight);
+  context.fillRect(paddleTopX, 10, paddleWidth, paddleHeight);
 
   // Dashed Center Line
-  // context.beginPath();
-  // context.setLineDash([4]);
-  // context.moveTo(0, 350);
-  // context.lineTo(500, 350);
-  // context.strokeStyle = 'grey';
-  // context.stroke();
+  context.beginPath();
+  context.setLineDash([4]);
+  context.moveTo(0, 350);
+  context.lineTo(500, 350);
+  context.strokeStyle = 'grey';
+  context.stroke();
 
   // Ball
-  // context.beginPath();
-  // context.arc(ballX, ballY, ballRadius, 2 * Math.PI, false);
-  // context.fillStyle = 'white';
-  // context.fill();
+  context.beginPath();
+  context.arc(ballX, ballY, ballRadius, 2 * Math.PI, false);
+  context.fillStyle = 'white';
+  context.fill();
 
   // Score
-  // context.font = '32px Courier New';
-  // context.fillText(playerScore, 20, canvas.height / 2 + 50);
-  // context.fillText(computerScore, 20, canvas.height / 2 - 30);
+  context.font = '32px Courier New';
+  context.fillText(playerScore, 20, canvas.height / 2 + 50);
+  context.fillText(computerScore, 20, canvas.height / 2 - 30);
 }
 
 // Create Canvas Element
-function createCanvas() {
+const createCanvas = () => {
   canvas.width = width;
   canvas.height = height;
   body.appendChild(canvas);
@@ -102,7 +102,7 @@ function ballReset() {
 }
 
 // Adjust Ball Movement
-function ballMove() {
+const ballMove = () => {
   // Vertical Speed
   ballY += -speedY;
   // Horizontal Speed
@@ -112,7 +112,7 @@ function ballMove() {
 }
 
 // Determine What Ball Bounces Off, Score Points, Reset Ball
-function ballBoundaries() {
+const ballBoundaries = () => {
   // Bounce off Left Wall
   if (ballX < 0 && speedX < 0) {
     speedX = -speedX;
@@ -164,7 +164,7 @@ function ballBoundaries() {
 }
 
 // Computer Movement
-function computerAI() {
+const computerAI = () => {
   if (playerMoved) {
     if (paddleTopX + paddleDiff < ballX) {
       paddleTopX += computerSpeed;
@@ -174,7 +174,7 @@ function computerAI() {
   }
 }
 
-function showGameOverEl(winner) {
+const showGameOverEl = (winner) => {
   // Hide Canvas
 
   // // Container
@@ -193,7 +193,7 @@ function showGameOverEl(winner) {
 }
 
 // Check If One Player Has Winning Score, If They Do, End Game
-function gameOver() {
+const gameOver = () => {
   // if (playerScore === winningScore || computerScore === winningScore) {
   //   isGameOver = ;
   //   // Set Winner
@@ -203,7 +203,7 @@ function gameOver() {
 }
 
 // Called Every Frame
-function animate() {
+const animate = () => {
   renderCanvas();
   ballMove();
   ballBoundaries();
@@ -212,7 +212,7 @@ function animate() {
 }
 
 // Start Game, Reset Everything
-function startGame() {
+const startGame = () => {
   // if (isGameOver && !isNewGame) {
 
 
